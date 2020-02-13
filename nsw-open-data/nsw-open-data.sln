@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nsw-open-data", "nsw-open-data.csproj", "{2CD47FEF-3D0D-4124-9C31-61E9065F60A7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nsw-traffic", "nsw-traffic", "{2E803F49-F812-43ED-9398-466BE340B6B8}"
+	ProjectSection(SolutionItems) = preProject
+		..\nsw-traffic\.gitignore = ..\nsw-traffic\.gitignore
+		..\nsw-traffic\nsw-traffic.csproj = ..\nsw-traffic\nsw-traffic.csproj
+		..\nsw-traffic\Program.cs = ..\nsw-traffic\Program.cs
+		..\nsw-traffic\README.md = ..\nsw-traffic\README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2CD47FEF-3D0D-4124-9C31-61E9065F60A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CD47FEF-3D0D-4124-9C31-61E9065F60A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CD47FEF-3D0D-4124-9C31-61E9065F60A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CD47FEF-3D0D-4124-9C31-61E9065F60A7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A8E78C88-9EAE-47EA-92A3-57350043C32B}
+	EndGlobalSection
+EndGlobal
