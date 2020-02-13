@@ -5,7 +5,11 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using Newtonsoft.Json;
 using nsw_open_data.Client;
+using nsw_open_data.Models;
+using System.IO;
+using ChoETL;
 
 namespace nsw_open_data
 {
@@ -35,7 +39,30 @@ namespace nsw_open_data
                 // Get the current traffic incidents
                 var incidents = await transportClient.GetCurrentTrafficIncidentsAsync(client.BaseAddress, client);
 
-                Console.WriteLine(incidents.ToString());
+                var currentTrafficIncidents = JsonConvert.DeserializeObject<CurrentTrafficIncidentsModel>(incidents);
+
+                
+                StringBuilder stringBuilder = new StringBuilder();
+
+                using (var incidentData = ChoJSONReader.LoadText(incidents)
+                    .WithJSONPath("$..features[*]")
+                    )
+                {
+                    using (var writer = new ChoCSVWriter(stringBuilder)
+                        .WithFirstLineHeader()
+                        .Configure(c => c.MaxScanRows = 1)
+                        .Configure(c => c.ThrowAndStopOnMissingField = false)
+                        )
+                    {
+                        writer.Write(incidentData);
+                    }
+                }
+
+
+                File.AppendAllText("./output.csv", stringBuilder.ToString());
+
+                Console.WriteLine(currentTrafficIncidents.features);
+                //Console.WriteLine(incidents.ToString());
             }
             catch (Exception e)
             {
