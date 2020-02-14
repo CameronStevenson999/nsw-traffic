@@ -24,7 +24,7 @@ namespace nsw_open_data
 
         static async Task RunAsync()
         {
-            // Update port # in the following line.
+            // Update web service API endpoint in the following line.
             client.BaseAddress = new Uri("https://api.transport.nsw.gov.au/v1/live/hazards/incident/open");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
@@ -61,7 +61,8 @@ namespace nsw_open_data
 
                 File.AppendAllText("./output.csv", stringBuilder.ToString());
 
-                Console.WriteLine(currentTrafficIncidents.features);
+                Console.WriteLine("\nThe output from NSW Open Data Transport API is now in CSV flat file format. Filename: output.csv");
+                //Console.WriteLine(currentTrafficIncidents.features);
                 //Console.WriteLine(incidents.ToString());
             }
             catch (Exception e)
@@ -69,7 +70,7 @@ namespace nsw_open_data
                 Console.WriteLine(e.Message);
             }
 
-            Console.ReadLine();
+            Console.WriteLine("\nPress any key to exit.");
         }
     }
 }
