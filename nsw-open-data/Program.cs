@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
 using nsw_open_data.Client;
 using nsw_open_data.Models;
+using nsw_open_data;
 using System.IO;
 using ChoETL;
 
@@ -18,7 +17,16 @@ namespace nsw_open_data
         static HttpClient client = new HttpClient();
         static void Main()
         {
-            Console.WriteLine("Starting async process to call NSW Open Data Transport API");
+            Console.Write("Input your name and press Enter key: ");
+            string strInput = Console.ReadLine();
+            NameVerifyService nameVerifyService = new NameVerifyService();
+
+            if (!nameVerifyService.IsValidName(strInput))
+            {
+                Console.WriteLine("\nYou entered a number, which is not a valid name.");
+            }
+
+            Console.WriteLine("\nStarting async process to call NSW Open Data Transport API");
             RunAsync().GetAwaiter().GetResult();
         }
 
@@ -32,7 +40,7 @@ namespace nsw_open_data
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("apikey", "j1zHbAwDsYNo4sR9FpInRVzIX8698p9JxomI");
 
             TransportAPI_client transportClient = new TransportAPI_client();
-            var url = client.BaseAddress.ToString();
+            
 
             try
             {
